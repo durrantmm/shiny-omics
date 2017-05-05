@@ -10,19 +10,22 @@ For the microbiome visualizations, you need two files: microbiome.tax and microb
 #### microbiome.tax
 Here is the required format of the microbiome.tax file:
 
-| Kingdom  | Phylum         | Class       | Order         | Family          | Genus       | Species              |
+1| Kingdom  | Phylum         | Class       | Order         | Family          | Genus       | Species              |
 |----------|----------------|-------------|---------------|-----------------|-------------|----------------------|
-| Bacteria | NA             | NA          | NA            | NA              | NA          | NA                   |
-| Bacteria | Bacteroidetes  | NA          | NA            | NA              | NA          | NA                   |
-| Bacteria | Bacteroidetes  | Bacteroidia | NA            | NA              | NA          | NA                   |
-| Bacteria | Bacteroidetes  | Bacteroidia | Bacteroidales | NA              | NA          | NA                   |
-| Bacteria | Bacteroidetes  | Bacteroidia | Bacteroidales | Bacteroidaceae  | NA          | NA                   |
-| Bacteria | Bacteroidetes  | Bacteroidia | Bacteroidales | Bacteroidaceae  | Bacteroides | NA                   |
-| Bacteria | Bacteroidetes  | Bacteroidia | Bacteroidales | Bacteroidaceae  | Bacteroides | Bacteroides vulgatus |
-| Bacteria | Proteobacteria | NA          | NA            | NA              | NA          | NA                   |
-| ...      | ...            | ...         | ...           | ...             | ...         | ...                  |
-| Bacteria | Firmicutes     | Clostridia  | Clostridiales | Lachnospiraceae | Roseburia   | Roseburia hominis    |
+2| Bacteria | NA             | NA          | NA            | NA              | NA          | NA                   |
+3| Bacteria | Bacteroidetes  | NA          | NA            | NA              | NA          | NA                   |
+4| Bacteria | Bacteroidetes  | Bacteroidia | NA            | NA              | NA          | NA                   |
+5| Bacteria | Bacteroidetes  | Bacteroidia | Bacteroidales | NA              | NA          | NA                   |
+6| Bacteria | Bacteroidetes  | Bacteroidia | Bacteroidales | Bacteroidaceae  | NA          | NA                   |
+7| Bacteria | Bacteroidetes  | Bacteroidia | Bacteroidales | Bacteroidaceae  | Bacteroides | NA                   |
+8| Bacteria | Bacteroidetes  | Bacteroidia | Bacteroidales | Bacteroidaceae  | Bacteroides | Bacteroides vulgatus |
+9| Bacteria | Proteobacteria | NA          | NA            | NA              | NA          | NA                   |
+10| ...      | ...            | ...         | ...           | ...             | ...         | ...                  |
+11| Bacteria | Firmicutes     | Clostridia  | Clostridiales | Lachnospiraceae | Roseburia   | Roseburia hominis    |
 
+Each column value should be separated by tabs.
+Each column corresponds to the level in the taxonomic tree. Header must be identical to shown above.
+The order can be any order that you want, but it must match up with the microbiome.cts file.
 
 #### microbiome.cts
 Here is the required format of the microbiome.cts file:
