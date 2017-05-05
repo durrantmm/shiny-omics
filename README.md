@@ -10,22 +10,22 @@ For the microbiome visualizations, you need two files: microbiome.tax and microb
 #### microbiome.tax
 Here is the required format of the microbiome.tax file:
 
-1| Kingdom  | Phylum         | Class       | Order         | Family          | Genus       | Species              |
+| Kingdom  | Phylum         | Class       | Order         | Family          | Genus       | Species              |
 |----------|----------------|-------------|---------------|-----------------|-------------|----------------------|
-2| Bacteria | NA             | NA          | NA            | NA              | NA          | NA                   |
-3| Bacteria | Bacteroidetes  | NA          | NA            | NA              | NA          | NA                   |
-4| Bacteria | Bacteroidetes  | Bacteroidia | NA            | NA              | NA          | NA                   |
-5| Bacteria | Bacteroidetes  | Bacteroidia | Bacteroidales | NA              | NA          | NA                   |
-6| Bacteria | Bacteroidetes  | Bacteroidia | Bacteroidales | Bacteroidaceae  | NA          | NA                   |
-7| Bacteria | Bacteroidetes  | Bacteroidia | Bacteroidales | Bacteroidaceae  | Bacteroides | NA                   |
-8| Bacteria | Bacteroidetes  | Bacteroidia | Bacteroidales | Bacteroidaceae  | Bacteroides | Bacteroides vulgatus |
-9| Bacteria | Proteobacteria | NA          | NA            | NA              | NA          | NA                   |
-10| ...      | ...            | ...         | ...           | ...             | ...         | ...                  |
-11| Bacteria | Firmicutes     | Clostridia  | Clostridiales | Lachnospiraceae | Roseburia   | Roseburia hominis    |
+| Bacteria | NA             | NA          | NA            | NA              | NA          | NA                   |
+| Bacteria | Bacteroidetes  | NA          | NA            | NA              | NA          | NA                   |
+| Bacteria | Bacteroidetes  | Bacteroidia | NA            | NA              | NA          | NA                   |
+| Bacteria | Bacteroidetes  | Bacteroidia | Bacteroidales | NA              | NA          | NA                   |
+| Bacteria | Bacteroidetes  | Bacteroidia | Bacteroidales | Bacteroidaceae  | NA          | NA                   |
+| Bacteria | Bacteroidetes  | Bacteroidia | Bacteroidales | Bacteroidaceae  | Bacteroides | NA                   |
+| Bacteria | Bacteroidetes  | Bacteroidia | Bacteroidales | Bacteroidaceae  | Bacteroides | Bacteroides vulgatus |
+| Bacteria | Proteobacteria | NA          | NA            | NA              | NA          | NA                   |
+| ...      | ...            | ...         | ...           | ...             | ...         | ...                  |
+| Bacteria | Firmicutes     | Clostridia  | Clostridiales | Lachnospiraceae | Roseburia   | Roseburia hominis    |
 
-Each column value should be separated by tabs.
-Each column corresponds to the level in the taxonomic tree. Header must be identical to shown above.
-The order can be any order that you want, but it must match up with the microbiome.cts file.
+  * Each column value should be separated by tabs.
+  * Each column corresponds to the level in the taxonomic tree. Header must be identical to shown above.
+  * The order can be any order that you want, but it must match up with the microbiome.cts file.
 
 #### microbiome.cts
 Here is the required format of the microbiome.cts file:
@@ -41,7 +41,11 @@ Here is the required format of the microbiome.cts file:
 | P4 | Oral | 0    | 2243 | 780 | 523 | ... | 235 |
 | P4 | Oral | 1    | 53   | 35  | 364 | ... | 64  |
 
-ID: The first column contains the unique IDs of the study participant of interest.
-Site: The second column indicates the site on the body where the microbiome was sampled.
-Time: The second column indicates the longitudinal ordering of the samples, these can be dates or numbers, but not both.
-1...n: Columns labeled 1 through n contain taxonomical counts. Each number
+  * Each column value should be separated by tabs.
+  * ID: The first column contains the unique IDs of the study participant of interest.
+  * Site: The second column indicates the site on the body where the microbiome was sampled.
+  * Time: The second column indicates the longitudinal ordering of the samples, these can be dates or numbers, but not both.
+  * 1...n: Columns labeled 1 through n contain taxonomical counts. Each column number corresponds to a specific row in the microbiome.tax file.
+    * For example, the column labeled 1 contains the count 124 as its first entry. This indicates that the Sample labeled P1 - Stool - 0 contains 124 read counts that were assigned specifically at the level of Bacteroides.
+    * IMPORTANT: This count corresponds to the reads that can ONLY be assigned at the level Bacteroides, and not lower. This is not an aggregate of the all counts classified at the level of Bacteroides and lower. It is specifically at the level of Bacteroides.
+
