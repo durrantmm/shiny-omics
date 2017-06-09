@@ -38,6 +38,10 @@ microbiomeAbundanceMainPlot <- function(input, omicsData){
     input$select_taxon_level
   })
   
+  indiv_id <- reactive({
+    input$participants
+  })
+  
   n_taxa <- reactive({
     input$display_n_taxa_slider
   })
@@ -46,7 +50,7 @@ microbiomeAbundanceMainPlot <- function(input, omicsData){
     input$include_unclassified
   })
   
-  gg <- ggplot_relative_abundance(taxon_level, n_taxa, include_unclassified, omicsData$microbiome)
+  gg <- ggplot_relative_abundance(taxon_level, indiv_id, n_taxa, include_unclassified, omicsData$microbiome)
   
   gg <- gg + theme(legend.position='none', axis.text=element_text(size=16), 
                    axis.title=element_text(size=18))
@@ -61,6 +65,10 @@ microbiomeAbundanceSidePlot <- function(input, omicsData){
     input$select_taxon_level
   })
   
+  indiv_id <- reactive({
+    input$participants
+  })
+  
   n_taxa <- reactive({
     input$display_n_taxa_slider
   })
@@ -69,7 +77,7 @@ microbiomeAbundanceSidePlot <- function(input, omicsData){
     input$include_unclassified
   })
   
-  gg <- ggplot_relative_abundance(taxon_level, n_taxa, include_unclassified, omicsData$microbiome) +
+  gg <- ggplot_relative_abundance(taxon_level, indiv_id, n_taxa, include_unclassified, omicsData$microbiome) +
     theme(legend.text=element_text(size=12))
   
   tmp <- ggplot_gtable(ggplot_build(gg))
@@ -101,14 +109,14 @@ relative_proportions_all_average <- function(taxon_level, microbiome){
 }
 
 
-ggplot_relative_abundance <- function(taxon_level, n_taxa, include_unclassified, microbiome_data){
+ggplot_relative_abundance <- function(taxon_level, indiv_id, n_taxa, include_unclassified, microbiome_data){
   composition_colors <- c('#a6cee3','#1f78b4','#b2df8a','#33a02c','#fb9a99','#e31a1c',
                           '#fdbf6f','#ff7f00','#cab2d6','#6a3d9a','#ffff99','#b15928')
   
   # Get subsets of data
   microbiome <- microbiome_data
   
-  data.f <- get_relative_proportions_data('ZOZOW1T', taxon_level(), n_taxa(), include_unclassified(), microbiome)
+  data.f <- get_relative_proportions_data(indiv_id(), taxon_level(), n_taxa(), include_unclassified(), microbiome)
   
   data.f.comp <- filter(data.f, Time=='Comparison')
   data.f.nocomp <- filter(data.f, Time!='Comparison')

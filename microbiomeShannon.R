@@ -25,9 +25,11 @@ microbiomeShannonMainPlot <- function(input, omicsData){
     input$select_taxon_level
   })
   
-  indiv_id <- "ZOZOW1T"
+  indiv_id <- reactive({
+    input$participants
+  })
   
-  data.f <- get_diversity_data(omicsData$microbiome, taxon_level, indiv_id)
+  data.f <- get_diversity_data(omicsData$microbiome, taxon_level, indiv_id())
   all_diversity_metrics <- analyze_diversity_all(omicsData$microbiome, taxon_level)
   
   gg <- ggplot(data=data.f, aes_string(x="Time", y="ShannonDiversity", group=1)) +

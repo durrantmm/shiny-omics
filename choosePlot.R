@@ -26,6 +26,8 @@ choosePlotInput <- function(id, label = "Choose Plot", ...) {
   
   tagList(
     selectInput(ns("choice"), "Choose Visualization", choices, ...),
+    selectInput(ns("participants"), "Choose Participant:", unique(omicsData$microbiome$ID), 
+                selected="ZOZOW1T"),
     uiOutput(ns("plot_controls"))
   )
 }
@@ -55,9 +57,7 @@ choosePlot <- function(input, output, session) {
     eval(parse(text=paste(input$choice, 'SidePlot(input, omicsData)', sep='')))
   })
   
-  return(reactive({
-    
-  }))
+  return(1)
 }
 
 plotOrPlotlyOutput <- function(){

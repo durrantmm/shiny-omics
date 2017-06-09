@@ -10,7 +10,11 @@ microbiomeFBControls <- function(ns){
 # This function takes the input from the sidebar
 # and outputs a plot to be displayed.
 microbiomeFBMainPlot <- function(input, omicsData){
-  data.f <- get_bac_firm_data(omicsData$microbiome, 'ZOZOW1T')
+  indiv_id <- reactive({
+    input$participants
+  })
+  
+  data.f <- get_bac_firm_data(omicsData$microbiome, indiv_id())
   
   data.f$Time <- as.numeric(data.f$Time)
   max_stage <- max(data.f$Time) + 0.5
