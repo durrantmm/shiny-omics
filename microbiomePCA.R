@@ -15,7 +15,7 @@ microbiomePCAMainPlot <- function(input, omicsData){
     input$participants
   })
   
-  pca <- get_pca_data(omicsData$microbiome)$pca
+  pca_data <- get_pca_data(omicsData$microbiome)
   data.f <- pca_data$data
   data.f$Time <- as.character(data.f$Time)
   
@@ -56,11 +56,11 @@ filter_microbiome_data_by_individual <- function(microbiome_data, indiv_id){
 get_pca_data <- function(microbiome_data){
   microbiome_data <- omicsData$microbiome
   data.f <- microbiome_data %>% 
-    filter(!is.na(Genus)) %>%
-    group_by(ID, Time, Genus) %>% 
+    filter(!is.na(Phylum)) %>%
+    group_by(ID, Time, Phylum) %>% 
     summarize(Count=sum(Count)) %>%
     group_by() %>%
-    select(ID, Time, Genus, Count)
+    select(ID, Time, Phylum, Count)
   
   totals <- data.f %>% 
     group_by(ID, Time) %>%
@@ -68,9 +68,9 @@ get_pca_data <- function(microbiome_data){
   
   data.f <- inner_join(data.f, totals) %>%
     mutate(Count = Count / total) %>%
-    select(ID, Time, Genus, Count)
+    select(ID, Time, Phylum, Count)
   
-  data.f <- spread(data.f, key=Genus, value=Count, fill=0) 
+  data.f <- spread(data.f, key=Phylum, value=Count, fill=0) 
   data.f <- data.f[, colSums(data.f != 0) > 0]
   data.m <- as.matrix(data.f %>% group_by() %>% select(-ID, -Time))
   
