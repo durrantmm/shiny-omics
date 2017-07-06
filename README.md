@@ -1,11 +1,51 @@
 # shiny-omics
 
+`shiny-omics` is a platform to quickly build a shiny-based web app for visualization of longitudinal multi-omics data sets.
+It's currently in development.
+
+
+## Installing shiny-omics
+As things currently stand, the platform is not ready to be hosted by a remote server. We suggest you just download it 
+to your own computer, such as a Macbook, in order to get things started. You can clone the application to your local
+computer from the command line using the command:
+
+    git clone https://github.com/durrantmm/shiny-omics.git
+
+## R dependencies
+You need to have the following packages installed in R in order to run shiny-omics:
+
+* `shiny`
+* `plotly`
+* `dplyr`
+* `ggfortify`
+* `grid`
+* `lubridate`
+* `vegan`
+* `vegan`
+* `readr`
+* `tidyr`
+
+## Run Shiny
+You can run the shiny app from the correct directory by running the command
+
+    R -e "shiny::runApp('app.R')"
+
+Which should give an output like:
+    
+    > shiny::runApp('app.R')
+    Loading required package: shiny
+    
+    Listening on http://127.0.0.1:6004
+
+You can then open up a web browser and put in the selected port listed, which in ou example is `http://127.0.0.1:6004`
+## Example Walkthrough
+
+
 ## data folder
 This is where you will keep your own data to be used by shiny-omics to produce the visualizations. 
 
 ### Microbiome Composition File Format
 For the microbiome visualizations, you need two files: microbiome.tax and microbiome.cts.
-
 
 #### microbiome.tax
 Here is the required format of the microbiome.tax file:

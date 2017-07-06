@@ -6,9 +6,12 @@ taxonomy_levels <- c("Phylum", "Class",
 selected_taxonomy <- taxonomy_levels[1]
 
 # The sidebar controls used to control the shiny app
-microbiomeShannonControls <- function(ns){
+microbiomeShannonControls <- function(ns, omicsData){
   
   tagList(
+    # Select the participant
+    selectInput(ns("participants"), "Choose Participant:", unique(omicsData$microbiome$ID), 
+                selected="ZOZOW1T"),
     # Select the taxonomy level drop down menu
     selectInput(ns("select_taxon_level"), 
                 label = "Select taxonomy level:", 
@@ -42,7 +45,8 @@ microbiomeShannonMainPlot <- function(input, omicsData){
     ylab("Shannon Diversity") + 
     theme_bw() +
     theme(legend.position='none', axis.text=element_text(size=16), 
-          axis.title=element_text(size=18))
+          axis.title=element_text(size=18),
+          axis.text.y=element_text(angle = 90, hjust=0.5))
   
   return(gg)
 }

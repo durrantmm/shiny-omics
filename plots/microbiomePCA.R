@@ -1,9 +1,13 @@
 require(vegan)
 
 # The sidebar controls used to control the shiny app
-microbiomePCAControls <- function(ns){
+microbiomePCAControls <- function(ns, omicsData){
   
-  tagList()
+  tagList(
+    # Select the participant
+    selectInput(ns("participants"), "Choose Participant:", unique(omicsData$microbiome$ID), 
+    selected="ZOZOW1T")
+  )
   
 }
 
@@ -33,7 +37,8 @@ microbiomePCAMainPlot <- function(input, omicsData){
     geom_point(data=data_in.indiv, aes(x=PC1, y=PC2, label=Time), size=3, colour='blue') +
     theme_bw() + 
     theme(legend.position='none', axis.text=element_text(size=16), 
-          axis.title=element_text(size=18))
+          axis.title=element_text(size=18),
+          axis.text.y=element_text(angle = 90, hjust=0.5))
   
   return(gg)
 }

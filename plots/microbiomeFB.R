@@ -1,9 +1,13 @@
 require(vegan)
 
 # The sidebar controls used to control the shiny app
-microbiomeFBControls <- function(ns){
+microbiomeFBControls <- function(ns, omicsData){
   
-  tagList()
+  tagList(
+    # Select the participant
+    selectInput(ns("participants"), "Choose Participant:", unique(omicsData$microbiome$ID), 
+                selected="ZOZOW1T")
+  )
   
 }
 
@@ -48,7 +52,8 @@ microbiomeFBMainPlot <- function(input, omicsData){
     theme_bw() +
     theme(legend.position="None",
           axis.text=element_text(size=16), 
-          axis.title=element_text(size=18)) +
+          axis.title=element_text(size=18),
+          axis.text.y=element_text(angle = 90, hjust=0.5)) +
     ylab("Firmicutes to Bacteroidetes Ratio")
   
   return(p)

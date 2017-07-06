@@ -10,9 +10,13 @@ selected_taxonomy <- taxonomy_levels[2]
 
 
 # The sidebar controls used to control the shiny app
-microbiomeAbundanceControls <- function(ns){
+microbiomeAbundanceControls <- function(ns, omicsData){
   
   tagList(
+    # Select the participant
+    selectInput(ns("participants"), "Choose Participant:", unique(omicsData$microbiome$ID), 
+                selected="ZOZOW1T"),
+    
     # Select the taxonomy level drop down menu
     selectInput(ns("select_taxon_level"), 
                 label = "Select taxonomy level:", 
@@ -53,7 +57,8 @@ microbiomeAbundanceMainPlot <- function(input, omicsData){
   gg <- ggplot_relative_abundance(taxon_level, indiv_id, n_taxa, include_unclassified, omicsData$microbiome)
   
   gg <- gg + theme(legend.position='none', axis.text=element_text(size=16), 
-                   axis.title=element_text(size=18))
+                   axis.title=element_text(size=18),
+                   axis.text.y=element_text(angle = 90, hjust=0.5))
   
   return(gg)
 }

@@ -8,30 +8,36 @@ require(grid)
 source("omicsData.R")
 
 # Specify the choices for the plots to display
+##############################################
+# EDIT THIS TO INCLUDE YOUR OWN VISUALIZATIONS
+##############################################
 choices = c(
   "Microbiome - Microbial Abundance" = "microbiomeAbundance",
   "Microbiome - Shannon Diversity" = "microbiomeShannon",
   "Microbiome - F/B Ratio" = "microbiomeFB",
-  "Microbiome - Principal Components" = "microbiomePCA"
+  "Microbiome - Principal Components" = "microbiomePCA",
+  "Glucose - Daily" = "glucoseDaily",
+  "Glucose - Hourly" = "glucoseHourly",
+  "Test Template" = "template"
 )
 
 # Load all of the modules
 for (c in choices){
-  source(paste(c, '.R', sep=''))
+  source(paste('plots/', c, '.R', sep=''))
 }
 
+# A module representing the input
 choosePlotInput <- function(id, label = "Choose Plot", ...) {
   # Create a namespace function using the provided id
   ns <- NS(id)
   
   tagList(
     selectInput(ns("choice"), "Choose Visualization", choices, ...),
-    selectInput(ns("participants"), "Choose Participant:", unique(omicsData$microbiome$ID), 
-                selected="ZOZOW1T"),
     uiOutput(ns("plot_controls"))
   )
 }
 
+# A module representing the output
 choosePlotOutput <- function(id, label = "Choose Plot"){
   ns <- NS(id)
   
@@ -43,10 +49,14 @@ choosePlotOutput <- function(id, label = "Choose Plot"){
 }
 
 # Module server function
+##########################################################################################################
+# This where the plots are rendered. I'm currently taking a risky approach by evaluating the text paste
+# as the function of interest. It would be nice to find a more elegant solution.
+#########################################################################################################
 choosePlot <- function(input, output, session) {
   
   output$plot_controls <- renderUI({
-    eval(parse(text=paste(input$choice, 'Controls(session$ns)', sep='')))
+    eval(parse(text=paste(input$choice, 'Controls(session$ns, omicsData)', sep='')))
   })
   
   output$mainplot <- renderPlot({
@@ -58,12 +68,4 @@ choosePlot <- function(input, output, session) {
   })
   
   return(1)
-}
-
-plotOrPlotlyOutput <- function(){
-  
-}
-
-renderPlotOrPlotly <- function(){
-  
 }
