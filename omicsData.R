@@ -22,10 +22,9 @@ glucose_data$Date <- as.Date(glucose_data$Date)
 
 # Load and process your data here to make sure it is formatted properly for your plots
 # your_data <- read_tsv("data/your_data.tsv")
-mtc <- read_tsv('data/mtcars.tsv')
 
 # Combine all data as single object
 # YOU MUST ADD YOUR DATA AT THIS POINT.
 omicsData <- list(microbiome=microbiome_data, 
-                  glucose=glucose_data, #, your_data=your_data)
-                  mtc=mtc)
+                  glucose=glucose_data #, your_data=your_data)
+                  )
