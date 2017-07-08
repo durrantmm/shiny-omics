@@ -18,7 +18,8 @@ choices = c(
   "Microbiome - Principal Components" = "microbiomePCA",
   "Glucose - Daily" = "glucoseDaily",
   "Glucose - Hourly" = "glucoseHourly",
-  "Test Template" = "template"
+  "Test Template" = "template",
+  "Car Dealership Principal Components" = "mtcarsPCA"
 )
 
 # Load all of the modules
